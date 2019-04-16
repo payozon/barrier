@@ -1,0 +1,73 @@
+name: barrier-kvm #the Barrier fork
+base: core18
+version: '2.2.0'
+summary: Eliminate the barrier between your machines.
+description: |
+       Barrier is KVM software forked from Symless's synergy 1.9 codebase.
+       Synergy was a commercialized reimplementation of the original
+       CosmoSynergy written by Chris Schoeneman.
+       https://github.com/debauchee/barrier
+grade: stable
+confinement: strict 
+
+apps:
+  barrier-kvm:
+    command: desktop-launch $SNAP/bin/barrier
+    plugs: [x11]
+parts:
+  qt5conf:
+    source: https://github.com/dplanella/qt5conf.git
+    plugin: nil
+
+  barrier-kvm:
+    source: https://github.com/payomagic/barrier.git
+    plugin: cmake
+    build-packages:
+      - g++
+      - gcc
+      - cmake
+      - make
+      - xorg-dev
+      - libcurl4-openssl-dev
+      - libavahi-compat-libdnssd-dev
+      - libssl-dev
+      - libx11-dev
+      - libqt4-dev
+      - qtbase5-dev
+      - qt5-style-plugins
+      - qt5ct
+      - xvfb
+    stage-packages:
+      - xvfb
+      - libxinerama-dev
+      - libxinerama1
+      - libxrandr-dev
+      - libxrandr2
+      - libxrender-dev
+      - libxrender1
+      - libxtst-dev
+      - qtdeclarative5-dev
+      - libavahi-compat-libdnssd-dev
+      - libqt5gui5
+      - qt5dxcb-plugin
+      - libavahi-common-dev
+      - libqt5x11extras5
+      - libxcb-xinerama0
+      - libxcb1-dev
+      - libxcb-xv0
+      - libxcb-xkb1
+      - libxcb-xfixes0-dev
+      - libxcb-xfixes0
+      - libxcb-render0-dev
+      - libxcb-render0
+      - libxcb-randr0-dev
+      - libxcb-randr0
+      - libxcb-present-dev
+      - libxcb-present0
+      - libx11-xcb-dev
+      - libxcb-glx0
+      - libxcb-glx0-dev
+      - libqt5svg5
+      - libqt5svg5-dev
+      - qt5ct
+    after: [desktop-qt5]
