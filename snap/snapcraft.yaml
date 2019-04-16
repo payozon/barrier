@@ -20,7 +20,7 @@ parts:
     plugin: nil
 
   barrier-kvm:
-    source: https://github.com/payomagic/barrier.git
+    source: https://github.com/payozon/barrier.git
     plugin: cmake
     build-packages:
       - g++
